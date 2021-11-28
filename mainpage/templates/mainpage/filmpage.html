@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static '../static/mainpage/filmpage.css' %}">
+{% endblock %}
+
+{% block content %}
+    <section id='corto-banner'>
+        <img class='banner-mobile' src='../static/mainpage/images/poster_corto.jpg' alt='en el bosque' />
+        <img class='book' src='../static/mainpage/images/dibujos-titulo.png' alt='cuaderno de dibujos' />
+    </section>
+    <img id='drawing1' class='drawing' src='../static/mainpage/images/dibujo1.png' alt='dibujo bosque'/>
+    <section id='sinopsis' class='film-sinopsis-container'>  
+        <div class='sinopsis-content'>
+            <img id='drawing1-tape' src='../static/mainpage/images/dibujo1tt.png' alt='dibujo bosque'/>
+            <img id='poster' src='../static/mainpage/images/poster_corto.jpg' alt='poster de En el Bosque'/>
+            <p class="sinopsis-paper">Los sueños recurrentes de Mateo, un joven de 27 años, amenazan su monótona rutina e impulsan una cadena de eventos reales y oníricos que lo adentran en su propio subconsciente.</p>
+        </div>
+    </section>
+    <img id='drawing2' class='drawing' src='../static/mainpage/images/dibujo2.png' alt='dibujo bosque'/>
+    <img id='drawing3-tape' class='drawing-tape' src='../static/mainpage/images/dibujo3t.png' alt='dibujo bosque'/>
+    <img id='drawing3' class='drawing' src='../static/mainpage/images/dibujo3.png' alt='dibujo bosque'/>
+    <section id=trailer>
+        <iframe src="https://player.vimeo.com/video/648842997?h=2e6a4abbb2" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+        <img id='drawing4-tape' class='drawing-tape' src='../static/mainpage/images/dibujo4t.png' alt='dibujo bosque'/>
+    </section>
+    <img id='drawing2-tape' class='drawing-tape' src='../static/mainpage/images/dibujo2t.png' alt='dibujo bosque'/>
+    <img id='drawing4' class='drawing' src='../static/mainpage/images/dibujo4.png' alt='dibujo bosque'/>
+    <section id='corto-bts'>
+        <div class='bts-header'>
+            <h2 class='bts-title'>Detrás de Escenas</h2>
+            <img src='../static/mainpage/images/bordepapel2.png' alt='borde de papel roto'/>
+        </div>
+        <div id='m-gallery'>
+            {% if images_bts_req %}
+            {% for img in images_bts_req %}
+                <img class='m-item' src='{{img.photo.url}}' loading="lazy"/>
+            {% endfor %}
+            {% endif %}
+          </div>
+    </section>
+
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.js"></script>
+<script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.js"></script>
+<script src="{% static '../static/mainpage/masonryLayout.js' %}"></script>
+
+{% endblock %}

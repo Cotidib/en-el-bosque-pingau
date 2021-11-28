@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static '../static/mainpage/mainpage.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glider-js@1/glider.min.css">
+{% endblock %}
+
+{% block content %}
+    <section>
+        <img id='parallax-bg' src='../static/mainpage/images/banner-parallax-fondo.png' alt='bosque de fondo'/>
+        <i class="fa fa-angle-double-down" id="scroll-arrow-mobile"></i>
+        <img id='parallax-m' src='../static/mainpage/images/banner-parallax-medio-titulo2.png' alt='titulo en el bosque'/>
+        <img id='parallax-fr' src='../static/mainpage/images/banner-parallax-frente.png' alt='bosque en el frente'/>
+      </section>
+    <section id='info' >
+        <div class='info-container'>
+            <img src='../static/mainpage/images/logo2.gif' alt=''/>
+            <div class='info-content'>
+                <h2 class='title'>Sobre el Proyecto <br> de Ingeniería Audiosvisual</h2>
+                <p>El Proyecto de Ingeniería Audiovisual es la materia y el proyecto con el que los alumnos de cuarto año de la Licenciatura en Ingeniería Audiovisual cierran su carrera y con el que los alumnos de tercer año tienen su primer contacto con uno de los dos grandes proyectos a lo largo de la carrera. </p>
+                <p>Cada año, el Proyecto de Ingeniería Audiovisual propone conocer y aplicar las técnicas de creación de un producto multimedia/audiovisual desde el diseño de la narración hasta la producción audiovisual y su programación, desafiando a implementar metodologías de investigación, desarrollo y evaluación de tecnologías aplicadas al audiovisual interactivo y transmedia, así como aplicar procesos de implementación económicos, financieros y comerciales involucrados en el desarrollo y producción de contenidos artísticos y de entretenimiento.</p>       
+            </div>
+        </div>
+        <div class='info-container'>
+            <div class='info-content'>
+                <h2 class='title right'>Punto de partida</h2>
+                <p>El concepto disparador detrás del proyecto de este año fue la temática del sueño. Con ello, durante el primer semestre se llevaron a cabo instancias de reflexión, de investigación y de charlas con profesionales, finalizando la primera parte de la materia con la idea formada del proyecto y con la elaboración del guión de lo que sería una de las dos partes de En el Bosque: un cortometraje. Durante el segundo semestre se llevo a cabo la pre-producción, producción y post-producción del cortometraje y el desarrollo tecnológico de la segunda mitad del proyecto, la instalación. </p>
+            </div>
+            <img src='../static/mainpage/images/logo4.png' alt=''/>
+        </div>
+        <div class="trees-decoration-container notabs">
+            <img id="trees-vector-b-r" class='trees-vector' src='../static/mainpage/images/arboles-blanco.png' alt='arboles'/>
+            <h2 class='question'>¿Sabías que casi dos tercios de la población dice tener sueños recurrentes?</h2>
+            <img id="trees-vector-b-l" class='trees-vector' src='../static/mainpage/images/arboles-blanco.png' alt='arboles'/>
+        </div>
+    </section>
+    <section id='work' class='work-container'>
+        <!-- <h2>Nuestros Proyectos</h2> -->
+        <div class='work-content'>
+            <div class='work-item'>
+                <img id='corto-index-img' class='work-img image-filter-active' src='../static/mainpage/images/corto_inicio.png' alt='poster'/>
+                <div class='direct-btns-container'>
+                    <a class="work-link-1" href="corto"><button class='direct-btn' onmouseover="handleDirectBtnHover(event)" onmouseout="handleDirectBtnHoverOut(event)">cortometraje</button></a>
+                    <a class="work-link-2" href="corto#trailer"><button class='direct-btn' onmouseover="handleDirectBtnHover(event)" onmouseout="handleDirectBtnHoverOut(event)">mira el trailer</button></a>
+                </div>
+            </div>
+            <div class='work-item'>
+                <img id='instalacion-index-img' class='work-img image-filter-active' src='../static/mainpage/images/instalacion_inicio.png' alt=''/>
+                <div class='direct-btns-container'>
+                    <a class="work-link-1" href="instalacion"><button class='direct-btn' onmouseover="handleDirectBtnHover(event)" onmouseout="handleDirectBtnHoverOut(event)">instalación</button></a>
+                    <a class="work-link-2" href="instalacion#reservas"><button class='direct-btn' onmouseover="handleDirectBtnHover(event)" onmouseout="handleDirectBtnHoverOut(event)">reserva tu experiencia</button></a>
+                </div>
+            </div>
+        </div>
+        <div class="trees-decoration-container">
+            <img id="trees-vector-b-r" class='trees-vector' src='../static/mainpage/images/arboles-blanco.png' alt='arboles'/>
+            <i class="fa fa-angle-double-down" id="scroll-arrow"></i>
+            <img id="trees-vector-b-l" class='trees-vector' src='../static/mainpage/images/arboles-blanco.png' alt='arboles'/>
+        </div>
+    </section>
+    <section id='team' class='team-container'>
+        <h2>Nuestro equipo</h2>
+        <div class="glider-contain">
+            <div class="glider">
+                {% if images_req %}
+                {% for img in images_req %}
+                    <div><img src='{{img.photo.url}}'/><p class='team-desc'>{{img.desc}}</p></div>
+                {% endfor %}
+                {% endif %}
+            </div>
+            <button aria-label="Previous" class="glider-prev">«</button>
+            <button aria-label="Next" class="glider-next">»</button>
+            <div role="tablist" class="dots"></div>
+          </div>
+          <div class="trees-decoration-container">
+            <img id="trees-vector-b-r" class='trees-vector' src='../static/mainpage/images/arboles-blanco.png' alt='arboles'/>
+            <img id="trees-vector-b-l" class='trees-vector' src='../static/mainpage/images/arboles-blanco.png' alt='arboles'/>
+        </div>
+    </section>
+    
+<script src="../static/mainpage/parallax.js"></script>
+<script src="../static/mainpage/index.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/glider-js@1/glider.min.js"></script>
+<script src="{% static '../static/mainpage/carouselLayout.js' %}"></script>   
+{% endblock %}

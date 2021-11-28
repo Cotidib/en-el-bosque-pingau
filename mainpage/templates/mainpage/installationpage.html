@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static '../static/mainpage/installationpage.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    <section>
+        <img id='parallax-bg' src='../static/mainpage/images/banner-parallax-fondo-rojo.png' alt='bosque de fondo'/>
+        <img id='parallax-m' src='../static/mainpage/images/banner-parallax-medio-titulo2.png' alt='titulo en el bosque'/>
+        <img id='parallax-fr' src='../static/mainpage/images/banner-parallax-frente-rojo.png' alt='bosque en el frente'/>
+      </section>
+    <section id='instalacion-info' class='info-container'>
+        <div class='info-content'>
+            <h2>Sobre la Instalación</h2>
+            <p>En el Bosque es una instalación interactiva e inmersiva donde los participantes podrán experimentar sensaciones parecidas a las que siente el protagonista del corto. Dentro del bosque, los árboles reaccionarán a la presencia de los visitantes, llevándolos hacia una proyección de sí mismos, sumados con elementos de realidad virtual que le dan vida a su representación.</p>
+        </div>
+        <div class="event-info-container">
+            <h2>Visita la Instalación</h2>
+            <h4><i class="far fa-calendar-alt"></i> 25 y 26 de Noviembre</h4>
+            <h4><i class="fas fa-map-marker-alt"></i> Universidad Católica, Montevideo<br>Sede Central, Salón 216, Piso 2</h4>
+            <h4 class="now-animation">¡NO TE QUEDES SIN LUGAR!<br>RESERVA AHORA<br><i class="fas fa-angle-down"></i></h4>  
+        </div>
+        <img src='../static/mainpage/images/enelbosque_render.png' alt=''/>
+    </section>
+    <section id='reservas'>
+        <div class='booking-container'>
+            <div class="booking-form-container">
+                <form class='form-container' action="{% url 'installation' %}" method="post">
+                    {% csrf_token %}
+                    <label for="name">Tu Nombre y Apellido:</label>
+                    <input type="text" id="name" name="name" tabindex="1" required>
+                    <label for="email">Tu Email:</label>
+                    <input type="email" id="email" name="email" tabindex="2" required>
+                    <label for="group">Cantidad de personas:</label>
+                    <select name="group" id="group">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    </select>
+                    <label for="group">Dia:</label>
+                    <select name="day" id="day" onchange="changeTimes()">
+                        {% for d in days.keys %}
+                            <option value="{{d}}">{{d}}</option>
+                        {% endfor %}
+                    </select>
+                    <label for="group">Hora:</label>
+                    <select name="time" id="time"> 
+                        <!-- dynamically rendered with js -->
+                    </select>
+                    <p id='soldout-message'>Ya no quedan fechas disponibles</p>
+                    <button id="submit-btn" type="submit" value="Submit">Reservar</button>
+                </form>
+            </div>
+            <div class="map"><iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13090.81646234909!2d-56.1594168!3d-34.8887756!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x13508c3340b76e45!2sUniversidad%20Cat%C3%B3lica%20del%20Uruguay%20(UCU)!5e0!3m2!1ses!2suy!4v1636241221716!5m2!1ses!2suy" style="border:0;" allowfullscreen="" loading="lazy"></iframe></div>
+        </div>
+    </section>
+
+    <script type="text/javascript">
+        js_days_dic = {}
+        {% if days %}
+
+            //convert django's days_dic (days) to a js dictionary
+            {% for d,t in days.items %}
+                js_days_dic["{{d}}"] = []
+                // console.log("{{d}}")
+                {% for v in t %}
+                    js_days_dic["{{d}}"].push("{{v}}")
+                {%endfor%}
+            {% endfor %}
+
+        {% else %}
+
+            //dates sold out
+            message = document.getElementById("soldout-message");
+            message.setAttribute("style", "display:block;");
+            submitbtn = document.getElementById("submit-btn");
+            submitbtn.setAttribute("disabled", "");
+            submitbtn.setAttribute("style", "opacity: .5;");
+
+        {% endif %}
+    </script>
+    <script src="../static/mainpage/reservationForm.js"></script>
+    <script src="../static/mainpage/parallax.js"></script>
+    <!-- <script src="../static/mainpage/leafletMap.js"></script> -->
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static '../static/mainpage/reservationpage.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    <section id='reserva-mensaje'>
+        <div class="message-container">
+            <h1>¡Tu reserva se registró correctamente!</h1>
+            <h3>Los detalles de tu reserva te llegarán por email.</h4>
+                <img class='trees-vector' src='../static/mainpage/images/arboles-blanco.png' alt='arboles'/>
+            <h4>Ante cualquier inconveniente, no dudes en contactarnos por cualquiera de los siguientes medios:</h6>
+            <h4><a href="https://www.instagram.com/en.el.bosque.2021/" class='contact-link'><i class="fab fa-instagram"></i> en.el.bosque.2021</a></h4>
+            <h4><a href="mailto:enelbosque2021@gmail.com" class='contact-link'><i class="far fa-envelope"></i> enelbosque2021@gmail.com</a></h4>
+        </div>
+        
+{% endblock %}

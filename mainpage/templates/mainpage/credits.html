@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static '../static/mainpage/credits.css' %}">
+{% endblock %}
+{% block content %}
+
+<section id='credits'>
+    <div class='credits-container'>
+        <div class='credits-content'>
+            <div class='credit-person-container'>
+                <p>Dirección General</p>
+                <p>Valentina García</p>
+            </div>
+            <div class='credit-person-container'>
+                <p>Producción General</p>
+                <p>Rodrigo Llofriu</p>
+            </div>
+            {% if corto_credits_req %}
+            {% for credit in corto_credits_req %}
+                <div class='credit-person-container'>
+                    <p>{{credit.person_role}} / {{credit.person_area}}</p>
+                    <p>{{credit.person_name}}</p>
+                </div>   
+            {% endfor %}
+            {% endif %}
+            {% if inst_credits_req %}
+            {% for credit in inst_credits_req %}
+                <div class='credit-person-container'>
+                    <p>{{credit.person_role}} / {{credit.person_area}}</p>
+                    <p>{{credit.person_name}}</p>
+                </div>   
+            {% endfor %}
+            {% endif %}
+            <div class='credit-person-container'>
+                <p>Registro de Video Backstage</p>
+                <p>Alfonso Mondo</p>
+            </div>   
+            <div class='credit-person-container'>
+                <p>Comunicación</p>
+                <p>Sofía Sención</p>
+            </div>   
+            <div class='credit-person-container'>
+                <p>Desarrollo Página Web</p>
+                <p>Constanza Dibueno</p>
+            </div>   
+            <br>
+            <h4>Especiales agradecimientos a:</h4>
+            <br>
+            {% if inst_credits_req %}
+            {% for credit in special_credits_req %}
+                <div class='credit-person-container'>
+                    <p>{{credit.person_role}}</p>
+                    <p>{{credit.person_name}}</p>
+                </div>   
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}

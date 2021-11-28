@@ -1,0 +1,58 @@
+body{
+    background-color: black;
+}
+
+#credits{
+    display: grid;
+    place-items:center;
+}
+
+.credits-container{
+    position: relative;
+    margin-top: 20%;
+    width: 80%;
+    height: 80%;
+    color:white;
+    overflow:hidden;
+}
+
+@media screen and (min-width: 800px){
+    .credits-container{
+        margin-top: 5%;
+        width: 50%;
+        height: 70%;
+    }
+}
+
+.credits-content{
+    display: block;
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    animation: creditRoll 60s linear forwards infinite;
+    animation-delay: 2s;
+}
+
+.credits-content:hover {
+    animation-play-state: paused;
+  }
+
+.credits-content h4{
+    text-align: center;
+}
+
+.credit-person-container{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items:center;
+}
+
+@keyframes creditRoll {
+    0% {
+      top: 100%;
+    }
+    100% {
+        top: -650%;
+      }
+  }
